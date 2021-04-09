@@ -60,9 +60,10 @@ li {
   font-size: 15px;
   top: -25px;
 }
-.weather-temperature .weather-condition {
+#condition {
   font-size: 20px;
   padding-left: 30px;
+  text-transform: capitalize;
 }
 .code {
   font-size: 10px;

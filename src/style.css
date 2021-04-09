@@ -27,6 +27,7 @@ li {
   font-weight: 100;
   line-height: 19px;
 }
+
 .weather-app-wrapper {
   max-width: 600px;
   margin: 30px auto;
@@ -63,7 +64,6 @@ li {
 #condition {
   font-size: 20px;
   padding-left: 30px;
-  text-transform: capitalize;
 }
 .code {
   font-size: 10px;

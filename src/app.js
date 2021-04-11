@@ -31,8 +31,11 @@ function displayTemperature(response) {
     let timeElement = document.querySelector("#time");
     let dateElement = document.querySelector("#date");
     let iconElement = document.querySelector("#icon");
+
+    celsiusTemperature = response.data.main.temp;
+
     cityElement.innerHTML = response.data.name;
-    temperatureElement.innerHTML = Math.round(response.data.main.temp);
+    temperatureElement.innerHTML = Math.round(celsiusTemperature);
     descriptionElement.innerHTML = response.data.weather[0].description;
     humidityElement.innerHTML = response.data.main.humidity;
     windElement.innerHTML = Math.round(response.data.wind.speed);
@@ -48,15 +51,38 @@ function search(city) {
     axios.get(apiUrl).then(displayTemperature);
 }
 
-
 function submitCity(event) {
     event.preventDefault();
     let cityInputElement = document.querySelector("#city-input");
     search(cityInputElement.value);
 }
 
+function showFahrenheitTemperature(event) {
+    event.preventDefault();
+    let temperatureElement = document.querySelector("#temperature");
+    celsiusConvert.classList.remove("active");
+    fahrenheitConvert.classList.add("active");
+    let fahrenheitTemperature = Math.round((celsiusTemperature * 9/5) + 32);
+    temperatureElement.innerHTML = fahrenheitTemperature;
+}
+
+function showCelsiusTemperature(event) {
+    event.preventDefault();
+    let temperatureElement = document.querySelector("#temperature");
+    celsiusConvert.classList.add("active");
+    fahrenheitConvert.classList.remove("active");
+    temperatureElement.innerHTML = Math.round(celsiusTemperature);
+}
+
+let celsiusTemperature = null; 
 
 let form = document.querySelector("#search-form");
 form.addEventListener("submit", submitCity)
+
+let fahrenheitConvert = document.querySelector("#fahrenheit-convert");
+fahrenheitConvert.addEventListener("click", showFahrenheitTemperature);
+
+let celsiusConvert = document.querySelector("#celsius-convert");
+celsiusConvert.addEventListener("click", showCelsiusTemperature);
 
 search("Amsterdam");

@@ -72,6 +72,13 @@ li {
   padding-left: 60px;
 }
 .code {
-  font-size: 10px;
+  font-size: 12px;
   color: #3d3d3d;
+}
+.weather-forecast {
+  text-align: center;
+  margin-bottom: 10px;
+}
+.weather-forecast-temperature-min {
+  color: darkgrey;
 }

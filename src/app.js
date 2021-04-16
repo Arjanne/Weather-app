@@ -20,8 +20,33 @@ function formatDate(timestamp) {
     let month = months[date.getMonth()];
     let year = date.getFullYear();
     return `${dates} ${month} ${year}`;
-
 }
+
+function displayForecast() {
+    let forecastElement = document.querySelector("#forecast");
+
+    let forecastHTML = `<div class="row">`;
+    let days = ["Thu", "Fri", "Sat", "Sun"];
+    days.forEach(function(day) {
+        forecastHTML = forecastHTML +  
+            `         
+                <div class="col-md-2">
+                    <ul>
+                        <li class="weather-forecast-date">${day}</li>
+                        <img src="http://openweathermap.org/img/wn/50d@2x.png" alt="" width="40">
+                        <li> <span class="weather-forecast-temperature-max">9°</span> / <span class="weather-forecast-temperature-min">20°</span></li>
+                    </ul>
+                </div>`;    
+    })
+    
+   
+    forecastHTML = forecastHTML + `</div>`;    
+    forecastElement.innerHTML = forecastHTML;
+}
+
+
+
+
 function displayTemperature(response) {
     let cityElement = document.querySelector("#city");
     let temperatureElement = document.querySelector("#temperature");
@@ -45,6 +70,8 @@ console.log(response);
     dateElement.innerHTML = formatDate(response.data.dt * 1000);
     iconElement.setAttribute("src", `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`);
     iconElement.setAttribute("alt", response.data.weather[0].description);
+
+   
 }
 
 function search(city) {
@@ -77,6 +104,8 @@ function showCelsiusTemperature(event) {
 }
 
 let celsiusTemperature = null; 
+
+displayForecast();
 
 let form = document.querySelector("#search-form");
 form.addEventListener("submit", submitCity)
